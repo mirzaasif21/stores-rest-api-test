@@ -36,7 +36,7 @@ class IntegrationTestStore(BaseTest):
     def test_store_json(self):
         with self.app_context():
             store = StoreModel('test')
-            expected = {'name': 'test', 'items': []}
+            expected = {'id': None, 'name': 'test', 'items': []}
 
             self.assertDictEqual(store.json(), expected)
 
@@ -46,6 +46,6 @@ class IntegrationTestStore(BaseTest):
             item = ItemModel('test_item', 21.50, 1)
             store.save_to_db()
             item.save_to_db()
-            expected = {'name': 'test', 'items': [{'name': 'test_item', 'price': 21.50}]}
+            expected = {'id': 1, 'name': 'test', 'items': [{'name': 'test_item', 'price': 21.50}]}
 
             self.assertDictEqual(store.json(), expected)
